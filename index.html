@@ -1,0 +1,67 @@
+﻿<!doctype html>
+
+<html>
+	<style type="text/css">
+		#myimg{
+			zoom: 0.3;
+		}
+	</style>
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery打印插件jqprint</title>
+		<script language="javascript" src="jquery-1.4.4.min.js"></script>
+		<script language="javascript" src="jquery.jqprint-0.3.js"></script>
+	</head>
+
+	<body>
+		<input type="button" onclick="aa()" value="打印" />
+		<div id="ddd">
+			<canvas id="myCanvas" width="2480" height="3547" style="display: none;"></canvas>
+		</div>
+		<img src="" id="myimg"/>
+	</body>
+
+</html>
+<script type="text/javascript">
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+	ctx.fillStyle = "#fff";
+	ctx.fillRect(0, 0, 2480, 3547);
+	ctx.font = "40px Arial";
+	ctx.fillStyle = 'red';
+	ctx.fillText("GY12213_J", 1488, 483); //合同编号
+	ctx.fillText("日野汽车（中国）有限公司", 460, 556); //承租方
+	ctx.fillText("13269977244", 1488, 556); //承租方电话
+//	ctx.fillText("北京市朝阳区发展大厦1609室", 460, 194); //承租方地址
+//	ctx.fillText("法人代表", 460, 266); //法人
+//	ctx.fillText("13269977244", 1412, 266); //法人电话
+//	ctx.fillText("北京市朝阳区发展大厦1609室", 370, 334); //法人住址
+//	ctx.fillText("驾驶员", 30, 484); //驾驶员
+//	ctx.fillText("驾驶员", 30, 561); //驾驶员
+//	ctx.fillText("驾驶员", 30, 634); //驾驶员
+//	ctx.fillText("档案编号", 370, 484); //档案编号
+//	ctx.fillText("档案编号", 370, 561); //档案编号
+//	ctx.fillText("档案编号", 370, 634); //档案编号
+//	ctx.fillText("140581199709097868", 917, 484); //身份证号
+//	ctx.fillText("140581199709097868", 917, 561); //身份证号
+//	ctx.fillText("140581199709097868", 917, 634); //身份证号
+//	ctx.fillText("13267777777", 1497, 484); //联系电话
+//	ctx.fillText("13267777777", 1497, 561); //联系电话
+//	ctx.fillText("13267777777", 1497, 634); //联系电话
+
+	console.log(convertCanvasToImage(c))
+
+	function convertCanvasToImage(canvas) {
+		var image = new Image();
+		console.log(canvas.toDataURL("image/png"))
+		image.src = canvas.toDataURL("image/png");
+		$("#myimg").attr("src",canvas.toDataURL("image/png"))
+		return image;
+	}
+
+	function aa() {
+		console.log($("#myCanvas"))
+		console.log($("#myimg"))
+		$("#myimg").jqprint();
+	}
+</script>
